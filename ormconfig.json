@@ -6,7 +6,7 @@
   "username": "infeau_typeorm",
   "password": "infeau",
   "database": "postgres",
-  "dropSchema": false,
+  "dropSchema": true,
   "synchronize": true,
   "logging": false,
   "entities": ["src/entity/*.ts"],
