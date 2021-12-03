@@ -22,10 +22,9 @@ const findPersonneById = async (id: number) => {
     .findOne({ where: { id }, relations: ["bio"] });
 };
 
-//Fonction correspondante au défi MOVAI Code
 const findPersonneMOVAI = async (nom_prenom: string) => {
   var $$$$$$$$$$: any = await getAllPersonnes(false);
-  let $$$$$$$$$$$$$$$$$$$$$ = [];
+  let $$$$$$$$$$$$$$$$$$$$$: any = [];
   let $$$$$$$$$$$$$$$$$$$$ = [];
   let $$$$$$$$$$$$$$$$$$$$$$ = 0;
   let $$$$$$$$$$$$$$$$$$$$$$$ = true;
@@ -35,7 +34,10 @@ const findPersonneMOVAI = async (nom_prenom: string) => {
       $$$$$$$$$$$$$$$$$$$$$$ =
         $$$$$$$$$$$$$$$$$$$$$$ +
         $$$$$$$$$$$$$$$$$$$$$$ / $$$$$$$$$$$$$$$$$$$$$$;
+      console.log("premier while");
+      console.log($$$$$$$$$$$$$$$$$$$$$$);
     } catch (err) {
+      console.log("fin du premier while");
       $$$$$$$$$$$$$$$$$$$$$$$ = false;
     }
   }
@@ -55,10 +57,13 @@ const findPersonneMOVAI = async (nom_prenom: string) => {
         $$$$$$$$$$$$$$$$$$$$$[$$$$$$$$$$$$$$$$$$$$$$$$$$$$$]
       );
     }
+    console.log("2e while");
+    console.log($$$$$$$$$$$$$$$$$$$$$$$$$$$$$);
     $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ =
       $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ +
       $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ / $$$$$$$$$$$$$$$$$$$$$$$$$$$$$;
   }
+  console.log("fin");
   return $$$$$$$$$$$$$$$$$$$$;
 };
 
