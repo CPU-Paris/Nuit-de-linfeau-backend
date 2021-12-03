@@ -1,38 +1,27 @@
 {
-  "name": "typeorm-typescript-example",
+  "name": "nuit-de-linfeau-backend",
   "version": "0.0.1",
-  "description": "Example how to use TypeORM with TypeScript.",
+  "description": "Back-end pour la Nuit de l'Info.",
   "license": "MIT",
-  "readmeFilename": "README.md",
-  "author": {
-    "name": "Umed Khudoiberdiev",
-    "email": "pleerock.me@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/typeorm/typescript-example.git"
-  },
-  "bugs": {
-    "url": "https://github.com/typeorm/typescript-example/issues"
-  },
-  "tags": [
-    "orm",
-    "typescript",
-    "typescript-orm",
-    "typeorm-sample",
-    "typeorm-example"
-  ],
+  "author": "Nuit de l'Inf-eau",
   "devDependencies": {
     "@types/node": "^9.6.5",
-    "typescript": "^3.3.3333"
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^3.9.10"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "mysql": "^2.15.0",
-    "reflect-metadata": "^0.1.12",
-    "typeorm": "^0.2.15"
+    "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.41"
   },
   "scripts": {
-    "start": "tsc && node src/index.js",
+    "start": "nodemon src/index.ts",
     "typeorm": "./node_modules/.bin/typeorm "
   }
 }

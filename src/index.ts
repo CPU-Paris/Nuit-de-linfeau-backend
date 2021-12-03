@@ -1,25 +1,80 @@
-import {createConnection} from "typeorm";
-import {Post} from "./entity/Post";
-import {Category} from "./entity/Category";
+import { readFileSync } from "fs";
+import "reflect-metadata";
 
-// connection settings are in the "ormconfig.json" file
-createConnection().then(async connection => {
+require("dotenv").config();
 
-    const category1 = new Category();
-    category1.name = "TypeScript";
-    await connection.manager.save(category1);
+console.log("Démarrage de l'API.");
+import { createConnection, getConnection } from "typeorm";
 
-    const category2 = new Category();
-    category2.name = "Programming";
-    await connection.manager.save(category2);
+import * as apiRoutes from "./api/routes";
+import { Personne } from "./entity/Personne";
+import { Texte } from "./entity/Texte";
 
-    const post = new Post();
-    post.title = "Control flow based type analysis";
-    post.text = `TypeScript 2.0 implements a control flow-based type analysis for local variables and parameters.`;
-    post.categories = [category1, category2];
+createConnection()
+  .then(async (connection) => {
+    const express = require("express");
+    const app = express();
 
-    await connection.manager.save(post);
+    const bodyParser = require("body-parser");
+    const morgan = require("morgan");
 
-    console.log("Post has been saved: ", post);
+    app.use(function (req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*"); // to replace
+      res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+      );
+      res.header(
+        "Access-Control-Allow-Methods",
+        "OPTIONS, GET, POST, DELETE, PUT"
+      );
+      next();
+    });
 
-}).catch(error => console.log("Error: ", error));
+    app.use(bodyParser.json());
+    app.use(morgan("combined"));
+
+    app.use("/", apiRoutes);
+
+    app.listen(process.env.EXPRESS_PORT, () => {
+      console.log("Express server started.");
+    });
+
+    let personne = new Personne();
+    personne.nom_prenom = "Toto";
+
+    let bio = new Texte();
+    bio.texte = "Je suis un texte";
+    bio.date = new Date();
+    bio.valide = true;
+
+    await getConnection().manager.save(bio);
+
+    personne.bio = bio;
+    await getConnection().manager.save(personne);
+
+    let file = await readFileSync("./run.txt", "utf8");
+    let lines = file.toString().split("\r\n");
+
+    let personnes = [];
+
+    for (let i in lines) {
+      let line = lines[i].split(",");
+      if (line[0] === "PER") {
+        if (personnes.filter((p) => p.nom_prenom === line[1]).length === 0) {
+          let personne = new Personne();
+          personne.nom_prenom = line[1];
+          personnes.push(personne);
+          console.log(i);
+        }
+      }
+    }
+
+    await connection
+      .createQueryBuilder()
+      .insert()
+      .into(Personne)
+      .values(personnes)
+      .execute();
+  })
+  .catch((error) => console.log("Error: ", error));

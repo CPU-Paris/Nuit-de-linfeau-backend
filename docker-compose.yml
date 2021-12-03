@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  server:
+    depends_on:
+      - db
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3010:3000"
+    env_file:
+      - .env
+    links:
+      - db
+    command: ["npm", "start"]
+
+  db:
+    image: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    command: ["postgres"]
+    restart: always
+
+volumes:
+  db-data:
