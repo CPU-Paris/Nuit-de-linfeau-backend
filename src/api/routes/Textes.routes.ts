@@ -45,3 +45,5 @@ router.delete("/texte/modifications", async (req, res) => {
 });
 
 router.delete("/texte", (req, res) => {});
+
+export = router;
