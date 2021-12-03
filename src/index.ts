@@ -56,7 +56,11 @@ createConnection()
     let file = await readFileSync("./run.txt", "utf8");
     let lines = file.toString().split("\r\n");
 
+    console.log(file.toString().substring(0, 200));
+
     let personnes = [];
+
+    console.log(lines.length + " lignes");
 
     for (let i in lines) {
       let line = lines[i].split(",");
