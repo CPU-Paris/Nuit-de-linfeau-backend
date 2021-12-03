@@ -6,6 +6,7 @@ import {
   deletePersonne,
   findPersonne,
   findPersonneById,
+  findPersonneMOVAI,
   getAllPersonnes,
   updatePersonne,
 } from "../services/Personne";
@@ -24,7 +25,7 @@ router.get("/personnes/by-id/:id", async (req, res) => {
 });
 
 router.get("/personnes/:recherche", async (req, res) => {
-  let personnes: Personne[] = await findPersonne(req.params.recherche);
+  let personnes: Personne[] = await findPersonneMOVAI(req.params.recherche);
   res.status(200).send(personnes);
 });
 
