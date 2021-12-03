@@ -1,5 +1,6 @@
 import { getConnection, ILike, Like } from "typeorm";
 import { Personne } from "../../entity/Personne";
+import { Texte } from "../../entity/Texte";
 
 const getAllPersonnes = async (withBio: boolean) => {
   return await getConnection()
@@ -68,6 +69,10 @@ const createPersonne = async (req) => {
   personne.nom_prenom = req.body.nom_prenom;
   personne.date_naissance = req.body.date_naissance;
   personne.date_deces = req.body.date_deces;
+  personne.bio = await getConnection()
+    .getRepository(Texte)
+    .findOne(req.body.texte);
+  delete req.body.texte;
   return await getConnection().manager.save(personne);
 };
 
