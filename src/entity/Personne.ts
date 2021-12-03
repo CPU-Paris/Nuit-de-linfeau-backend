@@ -20,4 +20,10 @@ export class Personne {
   @ManyToOne(() => Texte)
   @JoinColumn()
   bio?: Texte;
+
+  @Column({ nullable: true })
+  date_naissance?: Date;
+
+  @Column({ nullable: true })
+  date_deces?: Date;
 }
