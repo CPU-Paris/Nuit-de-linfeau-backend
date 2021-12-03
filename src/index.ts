@@ -8,6 +8,7 @@ import { createConnection, getConnection } from "typeorm";
 
 import * as apiRoutes from "./api/routes";
 import { Bateau } from "./entity/Bateau";
+import { Modification } from "./entity/Modification";
 import { Personne } from "./entity/Personne";
 import { Texte } from "./entity/Texte";
 
@@ -81,5 +82,18 @@ createConnection()
       .into(Bateau)
       .values(bateaux)
       .execute();
+
+    let texte = new Texte();
+    texte.date = new Date();
+    texte.texte = "Coucou";
+    let saved = await connection.manager.save(texte);
+
+    let modif = new Modification();
+    modif.texte = "Byebye";
+    modif.texteModifie = saved;
+    let savedModif = await connection.manager.save(modif);
+
+    saved.modif_attente = [savedModif];
+    await connection.manager.save(saved);
   })
   .catch((error) => console.log("Error: ", error));

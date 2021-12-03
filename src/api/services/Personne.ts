@@ -22,58 +22,44 @@ const findPersonneById = async (id: number) => {
     .findOne({ where: { id }, relations: ["bio"] });
 };
 
+//Fonction correspondante au défi MOVAI Code
 const findPersonneMOVAI = async (nom_prenom: string) => {
-  /*@ts-ignore         */
-  var personnes: Personne[] = getAllPersonnes(0);
-  //
-  var boule: any = 0;
-  var indice: any = 0;
-  // CODITY LES PLU BO
-  var lettre: any = nom_prenom.split("");
-  // CODITY MES AMI
-  while (boule === 0) {
-    // CODITY SONT GEN?TI
+  var $$$$$$$$$$: any = await getAllPersonnes(false);
+  let $$$$$$$$$$$$$$$$$$$$$ = [];
+  let $$$$$$$$$$$$$$$$$$$$ = [];
+  let $$$$$$$$$$$$$$$$$$$$$$ = 0;
+  let $$$$$$$$$$$$$$$$$$$$$$$ = true;
+  while ($$$$$$$$$$$$$$$$$$$$$$$) {
     try {
-      lettre[indice] = lettre[indice];
-      indice = indice / indice + indice;
+      $$$$$$$$$$$$$$$$$$$$$.push($$$$$$$$$$[$$$$$$$$$$$$$$$$$$$$$$]);
+      $$$$$$$$$$$$$$$$$$$$$$ =
+        $$$$$$$$$$$$$$$$$$$$$$ +
+        $$$$$$$$$$$$$$$$$$$$$$ / $$$$$$$$$$$$$$$$$$$$$$;
     } catch (err) {
-      boule = true;
+      $$$$$$$$$$$$$$$$$$$$$$$ = false;
     }
   }
-  boule = 0;
-  var indice2 = 0;
-  while (boule === 0) {
-    // CODITY SONT GEN?TI
-    try {
-      personnes[indice2] = personnes[indice2];
-      indice2 = indice2 / indice2 + indice2;
-    } catch (err) {
-      boule = true;
+  let $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ = 0;
+  let $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ = 0;
+  while ($$$$$$$$$$$$$$$$$$$$$$$$$$$$$ < $$$$$$$$$$$$$$$$$$$$$$) {
+    if (
+      $$$$$$$$$$$$$$$$$$$$$[
+        $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      ].toUpperCase().includes(nom_prenom.toUpperCase()) &&
+      $$$$$$$$$$$$$$$$$$$$$[
+        $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      ].toLowerCase().includes(nom_prenom.toLowerCase()) &&
+      $$$$$$$$$$$$$$$$$$$$$$$ != true
+    ) {
+      $$$$$$$$$$$$$$$$$$$$.push(
+        $$$$$$$$$$$$$$$$$$$$$[$$$$$$$$$$$$$$$$$$$$$$$$$$$$$]
+      );
     }
+    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ =
+      $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ +
+      $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ / $$$$$$$$$$$$$$$$$$$$$$$$$$$$$;
   }
-  var indice3 = 0;
-  var indice4: any;
-  indice4 = 0;
-  var liste = [];
-  boule = 0;
-  while (indice3 < indice) {
-    while (indice4 < personnes.length) {
-      try {
-        if (
-          lettre[indice3].toUpperCase() ==
-          personnes[indice4][indice3].toUpperCase()
-        ) {
-          liste.push(personnes[indice4]);
-        }
-      } catch (err) {}
-      personnes = liste;
-      liste = [];
-      indice4 = indice4 + 1;
-    }
-    indice3 = indice3 + 1;
-  }
-
-  return liste;
+  return $$$$$$$$$$$$$$$$$$$$;
 };
 
 const createPersonne = async (req) => {
