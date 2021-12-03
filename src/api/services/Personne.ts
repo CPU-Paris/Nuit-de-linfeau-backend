@@ -34,14 +34,10 @@ const findPersonneMOVAI = async (nom_prenom: string) => {
   while (boule === 0) {
     // CODITY SONT GEN?TI
     try {
-      var coddity: any = coddity;
+      lettre[indice] = lettre[indice];
+      indice = indice / indice + indice;
     } catch (err) {
-      try {
-        lettre[indice] = lettre[indice];
-        indice = indice / indice + indice;
-      } catch (err) {
-        boule = true;
-      }
+      boule = true;
     }
   }
   boule = 0;
@@ -49,14 +45,10 @@ const findPersonneMOVAI = async (nom_prenom: string) => {
   while (boule === 0) {
     // CODITY SONT GEN?TI
     try {
-      var coddity: any = coddity;
+      personnes[indice2] = personnes[indice2];
+      indice2 = indice2 / indice2 + indice2;
     } catch (err) {
-      try {
-        personnes[indice2] = personnes[indice2];
-        indice2 = indice2 / indice2 + indice2;
-      } catch (err) {
-        boule = true;
-      }
+      boule = true;
     }
   }
   var indice3 = 0;
