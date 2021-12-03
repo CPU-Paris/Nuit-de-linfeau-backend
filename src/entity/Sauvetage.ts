@@ -19,11 +19,11 @@ export class Sauvetage {
   @PrimaryColumn()
   id: string;
 
-  @OneToMany(() => Personne, (personne) => personne.id)
+  @ManyToMany(() => Personne)
   @JoinTable()
   sauveteurs: Personne[];
 
-  @OneToMany(() => Personne, (personne) => personne.id)
+  @ManyToMany(() => Personne)
   @JoinTable()
   sauve: Personne[];
 
