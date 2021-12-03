@@ -24,7 +24,7 @@ const findPersonneById = async (id: number) => {
 
 const findPersonneMOVAI = async (nom_prenom: string) => {
   /*@ts-ignore         */
-  var personnes: int = getAllPersonnes(0);
+  var personnes: Personne[] = getAllPersonnes(0);
   //
   var boule: any = 0;
   var indice: any = 0;
