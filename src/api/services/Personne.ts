@@ -1,4 +1,4 @@
-import { getConnection, Like } from "typeorm";
+import { getConnection, ILike, Like } from "typeorm";
 import { Personne } from "../../entity/Personne";
 
 const getAllPersonnes = async (withBio: boolean) => {
@@ -10,7 +10,7 @@ const getAllPersonnes = async (withBio: boolean) => {
 const findPersonne = async (nom_prenom: string) => {
   return await getConnection()
     .getRepository(Personne)
-    .find({ nom_prenom: Like(`%${nom_prenom}%`) });
+    .find({ nom_prenom: ILike(`%${nom_prenom}%`) });
 };
 
 const createPersonne = async (req) => {

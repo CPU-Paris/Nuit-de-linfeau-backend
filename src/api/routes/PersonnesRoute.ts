@@ -11,10 +11,10 @@ import {
 
 const router = express.Router();
 
-router.get("/personnes", async (req, res) => {
-  let personnes: Personne[] = await getAllPersonnes(true);
-  res.status(200).send(personnes);
-});
+// router.get("/personnes", async (req, res) => {
+//   let personnes: Personne[] = await getAllPersonnes(true);
+//   res.status(200).send(personnes);
+// });
 
 router.get("/personnes/:recherche", async (req, res) => {
   let personnes: Personne[] = await findPersonne(req.params.recherche);
