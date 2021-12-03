@@ -65,7 +65,7 @@ const findPersonneMOVAI = async (nom_prenom: string) => {
   var liste = [];
   boule = 0;
   while (indice3 < indice) {
-    while (indice4 < personnes.lenght()) {
+    while (indice4 < personnes.length) {
       try {
         if (
           lettre[indice3].toUpperCase() ==
