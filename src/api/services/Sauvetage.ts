@@ -1,4 +1,6 @@
 import { getConnection } from "typeorm";
+import { Bateau } from "../../entity/Bateau";
+import { Personne } from "../../entity/Personne";
 import { Sauvetage } from "../../entity/Sauvetage";
 
 const findSauvetage = async (id) => {
@@ -13,6 +15,20 @@ const findSauvetage = async (id) => {
 };
 
 const createOrUpdateSauvetage = async (req) => {
+  req.body.sauveteurs = req.body.sauveteurs.every(
+    async (sv) => await getConnection().getRepository(Personne).findOne(sv)
+  );
+
+  req.body.sauve = req.body.sauve.every(
+    async (sv) => await getConnection().getRepository(Personne).findOne(sv)
+  );
+
+  req.body.bateaux = req.body.bateaux.every(
+    async (bt) => await getConnection().getRepository(Bateau).findOne(bt)
+  );
+
+  console.log(req.body);
+
   const sauve = await getConnection().getRepository(Sauvetage).save(req.body);
   return sauve;
 };
