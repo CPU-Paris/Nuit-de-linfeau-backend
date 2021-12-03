@@ -2,6 +2,7 @@ import * as express from "express";
 import { Modification } from "../../entity/Modification";
 import { Texte } from "../../entity/Texte";
 import {
+  approveModification,
   createModification,
   createTexte,
   getModifications,
@@ -28,6 +29,16 @@ router.post("/texte/modifications", async (req, res) => {
   try {
     let modification: Modification = await createModification(req);
     return res.status(200).send(modification);
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(500);
+  }
+});
+
+router.put("/texte/modifications", async (req, res) => {
+  try {
+    await approveModification(req);
+    return res.sendStatus(200);
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
