@@ -35,6 +35,6 @@ export class Sauvetage {
   desc?: Texte;
 
   @ManyToMany(() => Bateau)
-  @JoinColumn()
+  @JoinTable()
   bateaux: Bateau[];
 }
