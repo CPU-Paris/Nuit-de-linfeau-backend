@@ -54,7 +54,7 @@ createConnection()
     await getConnection().manager.save(personne);
 
     let file = await readFileSync("./run.txt", "utf8");
-    let lines = file.toString().split("\r\n");
+    let lines = file.toString().split(/\r?\n/);
 
     console.log(file.toString().substring(0, 200));
 
