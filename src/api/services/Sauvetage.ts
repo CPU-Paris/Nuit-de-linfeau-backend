@@ -41,6 +41,10 @@ const createOrUpdateSauvetage = async (req) => {
   }
   req.body.bateaux = bateaux;
 
+  if (req.body.bateaux.length === 0) req.body.bateaux = null;
+  if (req.body.sauve.length === 0) req.body.sauve = null;
+  if (req.body.sauveteurs.length === 0) req.body.sauveteurs = null;
+
   console.log(req.body);
 
   const sauveSave = await getConnection()
