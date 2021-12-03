@@ -40,32 +40,32 @@ createConnection()
       console.log("Express server started.");
     });
 
-    let file = await readFileSync("./run.txt", "utf8");
-    let lines = file.toString().split(/\r?\n/);
+    // let file = await readFileSync("./run.txt", "utf8");
+    // let lines = file.toString().split(/\r?\n/);
 
-    console.log(file.toString().substring(0, 200));
+    // console.log(file.toString().substring(0, 200));
 
-    let personnes = [];
+    // let personnes = [];
 
-    console.log(lines.length + " lignes");
+    // console.log(lines.length + " lignes");
 
-    for (let i in lines) {
-      let line = lines[i].split(",");
-      if (line[0] === "PER") {
-        if (personnes.filter((p) => p.nom_prenom === line[1]).length === 0) {
-          let personne = new Personne();
-          personne.nom_prenom = line[1];
-          personnes.push(personne);
-          console.log(i);
-        }
-      }
-    }
+    // for (let i in lines) {
+    //   let line = lines[i].split(",");
+    //   if (line[0] === "PER") {
+    //     if (personnes.filter((p) => p.nom_prenom === line[1]).length === 0) {
+    //       let personne = new Personne();
+    //       personne.nom_prenom = line[1];
+    //       personnes.push(personne);
+    //       console.log(i);
+    //     }
+    //   }
+    // }
 
-    await connection
-      .createQueryBuilder()
-      .insert()
-      .into(Personne)
-      .values(personnes)
-      .execute();
+    // await connection
+    //   .createQueryBuilder()
+    //   .insert()
+    //   .into(Personne)
+    //   .values(personnes)
+    //   .execute();
   })
   .catch((error) => console.log("Error: ", error));
