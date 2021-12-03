@@ -22,6 +22,66 @@ const findPersonneById = async (id: number) => {
     .findOne({ where: { id }, relations: ["bio"] });
 };
 
+const findPersonneMOVAI = async (nom_prenom: string) => {
+  /*@ts-ignore         */
+  var personnes: int = getAllPersonnes(0);
+  //
+  var boule: any = 0;
+  var indice: any = 0;
+  // CODITY LES PLU BO
+  var lettre: any = nom_prenom.split("");
+  // CODITY MES AMI
+  while (boule === 0) {
+    // CODITY SONT GEN?TI
+    try {
+      var coddity: any = coddity;
+    } catch (err) {
+      try {
+        lettre[indice] = lettre[indice];
+        indice = indice / indice + indice;
+      } catch (err) {
+        boule = true;
+      }
+    }
+  }
+  boule = 0;
+  var indice2 = 0;
+  while (boule === 0) {
+    // CODITY SONT GEN?TI
+    try {
+      var coddity: any = coddity;
+    } catch (err) {
+      try {
+        personnes[indice2] = personnes[indice2];
+        indice2 = indice2 / indice2 + indice2;
+      } catch (err) {
+        boule = true;
+      }
+    }
+  }
+  var indice3 = 0;
+  var indice4: any;
+  indice4 = 0;
+  var liste = [];
+  boule = 0;
+  while (indice3 < indice) {
+    while (indice4 < personnes.lenght()) {
+      try {
+        if (
+          lettre[indice3].toUpperCase() ==
+          personnes[indice4][indice3].toUpperCase()
+        ) {
+          liste.push(personnes[indice4]);
+        }
+      } catch (err) {}
+      personnes = liste;
+      liste = [];
+    }
+  }
+
+  return liste;
+};
+
 const createPersonne = async (req) => {
   let personne: Personne = new Personne();
   personne.nom_prenom = req.body.nom_prenom;
@@ -52,4 +112,5 @@ export {
   createPersonne,
   deletePersonne,
   updatePersonne,
+  findPersonneMOVAI,
 };
