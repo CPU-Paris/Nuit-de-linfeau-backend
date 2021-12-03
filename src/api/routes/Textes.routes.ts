@@ -10,7 +10,7 @@ import {
 } from "../services/Texte";
 const router = express.Router();
 
-router.post("/texte", async (req, res) => {
+router.post("/textes", async (req, res) => {
   try {
     let texte: Texte = await createTexte(req);
     return res.status(200).send(texte);
@@ -20,12 +20,12 @@ router.post("/texte", async (req, res) => {
   }
 });
 
-router.get("/texte/modifications", async (req, res) => {
+router.get("/textes/modifications", async (req, res) => {
   let modifications: Modification[] = await getModifications();
   return res.status(200).send(modifications);
 });
 
-router.post("/texte/modifications", async (req, res) => {
+router.post("/textes/modifications", async (req, res) => {
   try {
     let modification: Modification = await createModification(req);
     return res.status(200).send(modification);
@@ -35,7 +35,7 @@ router.post("/texte/modifications", async (req, res) => {
   }
 });
 
-router.put("/texte/modifications", async (req, res) => {
+router.put("/textes/modifications", async (req, res) => {
   try {
     await approveModification(req);
     return res.sendStatus(200);
@@ -45,7 +45,7 @@ router.put("/texte/modifications", async (req, res) => {
   }
 });
 
-router.delete("/texte/modifications", async (req, res) => {
+router.delete("/textes/modifications", async (req, res) => {
   try {
     await removeModification(req);
     return res.status(200);
