@@ -5,6 +5,7 @@ import {
   createPersonne,
   deletePersonne,
   findPersonne,
+  findPersonneById,
   getAllPersonnes,
   updatePersonne,
 } from "../services/Personne";
@@ -15,6 +16,12 @@ const router = express.Router();
 //   let personnes: Personne[] = await getAllPersonnes(true);
 //   res.status(200).send(personnes);
 // });
+
+router.get("/personnes/by-id/:id", async (req, res) => {
+  let personne: Personne = await findPersonneById(req.params.id);
+  if (!personne) return res.sendStatus(404);
+  res.status(200).send(personne);
+});
 
 router.get("/personnes/:recherche", async (req, res) => {
   let personnes: Personne[] = await findPersonne(req.params.recherche);

@@ -13,6 +13,10 @@ const findPersonne = async (nom_prenom: string) => {
     .find({ nom_prenom: ILike(`%${nom_prenom}%`) });
 };
 
+const findPersonneById = async (id: number) => {
+  return await getConnection().getRepository(Personne).findOne({ id });
+};
+
 const createPersonne = async (req) => {
   let personne: Personne = new Personne();
   personne.nom_prenom = req.body.nom_prenom;
@@ -39,6 +43,7 @@ const deletePersonne = async (req) => {
 export {
   getAllPersonnes,
   findPersonne,
+  findPersonneById,
   createPersonne,
   deletePersonne,
   updatePersonne,
