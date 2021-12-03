@@ -15,15 +15,15 @@ const findSauvetage = async (id) => {
 };
 
 const createOrUpdateSauvetage = async (req) => {
-  req.body.sauveteurs = req.body.sauveteurs.every(
+  req.body.sauveteurs = req.body.sauveteurs.map(
     async (sv) => await getConnection().getRepository(Personne).findOne(sv)
   );
 
-  req.body.sauve = req.body.sauve.every(
+  req.body.sauve = req.body.sauve.map(
     async (sv) => await getConnection().getRepository(Personne).findOne(sv)
   );
 
-  req.body.bateaux = req.body.bateaux.every(
+  req.body.bateaux = req.body.bateaux.map(
     async (bt) => await getConnection().getRepository(Bateau).findOne(bt)
   );
 
