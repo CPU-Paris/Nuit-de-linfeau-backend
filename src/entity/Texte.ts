@@ -1,16 +1,26 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Modification } from "./Modification";
 
 @Entity()
 export class Texte {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ default: "" })
   texte: string;
+
+  @OneToMany(
+    (type) => Modification,
+    (modification) => modification.texteModifie
+  )
+  modif_attente: Modification[];
 
   @Column()
   date: Date;
-
-  @Column()
-  valide: boolean = false;
 }

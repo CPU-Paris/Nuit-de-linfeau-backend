@@ -7,6 +7,7 @@ console.log("Démarrage de l'API.");
 import { createConnection, getConnection } from "typeorm";
 
 import * as apiRoutes from "./api/routes";
+import { Bateau } from "./entity/Bateau";
 import { Personne } from "./entity/Personne";
 import { Texte } from "./entity/Texte";
 
@@ -46,6 +47,7 @@ createConnection()
     console.log(file.toString().substring(0, 200));
 
     let personnes = [];
+    let bateaux = [];
 
     console.log(lines.length + " lignes");
 
@@ -56,7 +58,12 @@ createConnection()
           let personne = new Personne();
           personne.nom_prenom = line[1];
           personnes.push(personne);
-          console.log(i);
+        }
+      } else if (line[0] === "BAT") {
+        if (bateaux.filter((p) => p.nom === line[1]).length === 0) {
+          let bateau = new Bateau();
+          bateau.nom = line[1];
+          bateaux.push(bateau);
         }
       }
     }
@@ -66,6 +73,13 @@ createConnection()
       .insert()
       .into(Personne)
       .values(personnes)
+      .execute();
+
+    await connection
+      .createQueryBuilder()
+      .insert()
+      .into(Bateau)
+      .values(bateaux)
       .execute();
   })
   .catch((error) => console.log("Error: ", error));
