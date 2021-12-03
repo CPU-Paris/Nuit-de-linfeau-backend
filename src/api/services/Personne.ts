@@ -68,7 +68,9 @@ const findPersonneMOVAI = async (nom_prenom: string) => {
       } catch (err) {}
       personnes = liste;
       liste = [];
+      indice4 = indice4 + 1;
     }
+    indice3 = indice3 + 1;
   }
 
   return liste;
