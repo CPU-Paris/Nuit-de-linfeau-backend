@@ -9,7 +9,7 @@ import {
 const router = express.Router();
 
 router.get("/sauvetages/:recherche", async (req, res) => {
-  let sauvetages: Sauvetage[] = await findSauvetage(req.body.id);
+  let sauvetages: Sauvetage[] = await findSauvetage(req.params.recherche);
   return res.status(200).send(sauvetages);
 });
 
