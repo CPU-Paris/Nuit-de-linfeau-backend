@@ -13,7 +13,7 @@ const findSauvetage = async (id) => {
 };
 
 const createOrUpdateSauvetage = async (req) => {
-  const sauve = await getConnection().getRepository(Sauvetage).save(req);
+  const sauve = await getConnection().getRepository(Sauvetage).save(req.body);
   return sauve;
 };
 
