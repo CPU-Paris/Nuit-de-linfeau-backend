@@ -1,7 +1,7 @@
 import * as express from "express";
 const router = express.Router();
 
-import Personnes = require("./PersonnesRoute");
+import Personnes = require("./Personnes.routes");
 
 router.use("/", Personnes);
 

@@ -1,5 +1,5 @@
 import * as express from "express";
-import { getConnection } from "typeorm";
+import { DeleteResult, getConnection } from "typeorm";
 import { Personne } from "../../entity/Personne";
 import {
   createPersonne,
@@ -49,7 +49,7 @@ router.put("/personnes", async (req, res) => {
 });
 
 router.delete("/personnes", async (req, res) => {
-  deletePersonne(req);
+  await deletePersonne(req);
   res.sendStatus(200);
 });
 

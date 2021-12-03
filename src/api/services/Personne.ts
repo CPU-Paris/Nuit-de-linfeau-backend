@@ -10,11 +10,16 @@ const getAllPersonnes = async (withBio: boolean) => {
 const findPersonne = async (nom_prenom: string) => {
   return await getConnection()
     .getRepository(Personne)
-    .find({ nom_prenom: ILike(`%${nom_prenom}%`) });
+    .find({
+      where: { nom_prenom: ILike(`%${nom_prenom}%`) },
+      relations: ["bio"],
+    });
 };
 
 const findPersonneById = async (id: number) => {
-  return await getConnection().getRepository(Personne).findOne({ id });
+  return await getConnection()
+    .getRepository(Personne)
+    .findOne({ where: { id }, relations: ["bio"] });
 };
 
 const createPersonne = async (req) => {
@@ -37,7 +42,7 @@ const updatePersonne = async (req) => {
 const deletePersonne = async (req) => {
   let personne: Personne = new Personne();
   personne.id = req.body.id;
-  getConnection().manager.remove(personne);
+  return await getConnection().manager.remove(personne);
 };
 
 export {
