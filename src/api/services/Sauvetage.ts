@@ -15,22 +15,38 @@ const findSauvetage = async (id) => {
 };
 
 const createOrUpdateSauvetage = async (req) => {
-  req.body.sauveteurs = await req.body.sauveteurs.map(
-    async (sv) => await getConnection().getRepository(Personne).findOne(sv)
-  );
+  let sauveteurs = [];
+  for (let i in req.body.sauveteurs) {
+    sauveteurs.push(
+      await getConnection()
+        .getRepository(Personne)
+        .findOne(req.body.sauveteurs[i])
+    );
+  }
+  req.body.sauveteurs = sauveteurs;
 
-  req.body.sauve = await req.body.sauve.map(
-    async (sv) => await getConnection().getRepository(Personne).findOne(sv)
-  );
+  let sauve = [];
+  for (let i in req.body.sauve) {
+    sauve.push(
+      await getConnection().getRepository(Personne).findOne(req.body.sauve[i])
+    );
+  }
+  req.body.sauve = sauve;
 
-  req.body.bateaux = await req.body.bateaux.map(
-    async (bt) => await getConnection().getRepository(Bateau).findOne(bt)
-  );
+  let bateaux = [];
+  for (let i in req.body.bateaux) {
+    bateaux.push(
+      await getConnection().getRepository(Bateau).findOne(req.body.bateaux[i])
+    );
+  }
+  req.body.bateaux = bateaux;
 
   console.log(req.body);
 
-  const sauve = await getConnection().getRepository(Sauvetage).save(req.body);
-  return sauve;
+  const sauveSave = await getConnection()
+    .getRepository(Sauvetage)
+    .save(req.body);
+  return sauveSave;
 };
 
 const deleteSauvetage = async (id) => {
