@@ -32,7 +32,7 @@ export class Sauvetage {
 
   @ManyToOne(() => Texte)
   @JoinColumn()
-  desc: Texte;
+  desc?: Texte;
 
   @ManyToMany(() => Bateau)
   @JoinColumn()
